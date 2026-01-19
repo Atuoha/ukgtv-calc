@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" id="htmlPage" data-bs-theme="light"></html>
 
 <head>
     <meta charset="UTF-8">
@@ -42,6 +42,8 @@
 
 <body>
 
+
+
     <div class="container py-5">
         <div class="row justify-content-center">
             <div class="col-lg-8 col-md-10">
@@ -50,9 +52,13 @@
                         <div>
                             <h2 class="mb-0 h4">🇬🇧 UK Global Talent Visa Estimator</h2>
                         </div>
-                        <button onclick="window.print()" class="btn btn-light btn-sm text-primary no-print">
-                            <i class="fas fa-file-pdf me-2"></i>Save PDF
-                        </button>
+                        <div class="d-flex gap-2"> <button class="btn btn-outline-light btn-sm no-print" id="themeToggle" title="Toggle Theme">
+                                <i class="fas fa-moon"></i>
+                            </button>
+                            <button onclick="window.print()" class="btn btn-light btn-sm text-primary no-print">
+                                <i class="fas fa-file-pdf me-2"></i>Save PDF
+                            </button>
+                        </div>
                     </div>
                     <div class="card-body p-4">
 
@@ -281,7 +287,8 @@
     <footer class="text-center mt-3 pb-5 no-print">
         <p class="text-muted" style="font-size: 0.75rem;">
             Made with <i class="fas fa-heart text-danger"></i> by Atuoha Anthony
-            <a href="https://linkedin.com/in/atuoha-anthony" target="_blank" class="text-decoration-none ms-1 text-primary">
+            <a href="https://linkedin.com/in/atuoha-anthony" target="_blank"
+                class="text-decoration-none ms-1 text-primary">
                 <i class="fab fa-linkedin"></i>
             </a>
         </p>

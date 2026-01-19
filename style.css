@@ -1,13 +1,55 @@
+:root {
+    /* Light Mode Variables (Your original colors) */
+    --bg-body: #f4f7f6;
+    --bg-card: #ffffff;
+    --text-color: #212529;
+    
+    /* Result Box (Light Blue) */
+    --bg-result: #e7f1ff;
+    --border-result: #b6d4fe;
+    
+    /* Currency Box (Light Yellow) */
+    --bg-currency: #fff3cd;
+    --border-currency: #ffecb5;
+    
+    /* Settings/Priority Box */
+    --bg-light-box: #f8f9fa; 
+    --border-light-box: #dee2e6;
+}
+
+[data-bs-theme="dark"] {
+    /* Dark Mode Variables */
+    --bg-body: #121212;
+    --bg-card: #1e1e1e;
+    --text-color: #e0e0e0;
+    
+    /* Result Box (Deep Navy) */
+    --bg-result: #0a1f38;
+    --border-result: #1c3d5e;
+    
+    /* Currency Box (Muted Olive/Brown) */
+    --bg-currency: #2c2508;
+    --border-currency: #4d441f;
+    
+    /* Settings/Priority Box */
+    --bg-light-box: #2b3035;
+    --border-light-box: #495057;
+}
+
 body {
-    background-color: #f4f7f6;
+    background-color: var(--bg-body);
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .calculator-card {
+    background-color: var(--bg-card);
     border: none;
     border-radius: 15px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     overflow: hidden;
+    transition: background-color 0.3s ease;
 }
 
 .card-header {
@@ -21,11 +63,18 @@ body {
 }
 
 .result-box {
-    background-color: #e7f1ff;
+    background-color: var(--bg-result);
     border-radius: 10px;
     padding: 20px;
     margin-top: 20px;
-    border: 1px solid #b6d4fe;
+    border: 1px solid var(--border-result);
+    transition: background-color 0.3s ease;
+}
+
+/* Ensure text inside result box is readable in dark mode */
+[data-bs-theme="dark"] .result-box, 
+[data-bs-theme="dark"] .result-box .text-dark {
+    color: #e0e0e0 !important;
 }
 
 .cost-item {
@@ -38,7 +87,7 @@ body {
 .cost-item.total {
     font-weight: bold;
     font-size: 1.3rem;
-    color: #0d6efd;
+    color: #0d6efd; /* Keeps blue accent in both modes */
     border-top: 2px dashed #ccc;
     padding-top: 15px;
     margin-top: 15px;
@@ -49,17 +98,35 @@ body {
 }
 
 .local-currency-total {
-    color: #198754;
+    color: #198754; /* Bootstrap Success Green */
     font-size: 1.1rem;
     margin-top: 5px;
 }
+/* Adjust green for better contrast in dark mode */
+[data-bs-theme="dark"] .local-currency-total {
+    color: #2ecc71; 
+}
 
 .currency-section {
-    background-color: #fff3cd;
-    border: 1px solid #ffecb5;
+    background-color: var(--bg-currency);
+    border: 1px solid var(--border-currency);
     padding: 15px;
     border-radius: 8px;
     margin-bottom: 20px;
+    transition: background-color 0.3s ease;
+}
+
+/* Fix text color inside warning/yellow boxes for dark mode */
+[data-bs-theme="dark"] .currency-section,
+[data-bs-theme="dark"] .text-warning-emphasis {
+    color: #e0e0e0 !important;
+}
+
+/* Override Bootstrap's bg-light for the priority switch */
+.bg-light {
+    background-color: var(--bg-light-box) !important;
+    border-color: var(--border-light-box) !important;
+    color: var(--text-color);
 }
 
 /* --- SMOOTH SLIDER CSS --- */
@@ -102,6 +169,9 @@ input[type=range]::-webkit-slider-runnable-track {
     background: #dee2e6;
     border-radius: 5px;
 }
+[data-bs-theme="dark"] input[type=range]::-webkit-slider-runnable-track {
+    background: #495057;
+}
 
 .range-ticks {
     display: flex;
@@ -113,61 +183,22 @@ input[type=range]::-webkit-slider-runnable-track {
     font-weight: 600;
 }
 
-/* PRINT STYLES */
+/* PRINT STYLES - Unchanged logic, ensuring white background */
 @media print {
-    body {
-        background-color: white;
+    body, .result-box, .calculator-card {
+        background-color: white !important;
+        color: black !important;
     }
-
-    .no-print,
-    .accordion,
-    .currency-section,
-    .range-wrap,
-    .btn,
-    .input-group-text,
-    input,
-    select {
+    
+    .no-print, .accordion, .currency-section, .range-wrap, .btn {
         display: none !important;
     }
 
-    /* We reveal specific values for print instead of inputs */
-    .print-only {
-        display: block !important;
-    }
-
-    .container {
-        max-width: 100%;
-        width: 100%;
-        padding: 0;
-    }
-
-    .calculator-card {
-        box-shadow: none;
-        border: 1px solid #ddd;
-    }
-
-    .card-header {
-        background: #eee !important;
-        color: #333 !important;
-        border: 1px solid #ccc;
-    }
-
-    .result-box {
-        background-color: white !important;
-        border: 1px solid #333;
-        break-inside: avoid;
-    }
-
-    /* Show summary of settings for print context */
-    .print-summary {
-        display: block !important;
-        margin-bottom: 20px;
-        padding: 15px;
-        border: 1px solid #ddd;
-    }
+    .container { max-width: 100%; width: 100%; padding: 0; }
+    .calculator-card { box-shadow: none; border: 1px solid #ddd; }
+    .card-header { background: #eee !important; color: #333 !important; }
+    .result-box { border: 1px solid #333; }
+    .print-summary { display: block !important; margin-bottom: 20px; padding: 15px; border: 1px solid #ddd; }
 }
 
-.print-summary,
-.print-only {
-    display: none;
-}
+.print-summary, .print-only { display: none; }

@@ -157,3 +157,41 @@ prioritySwitch.addEventListener('change', calculate);
 
 // Initial Calculation
 calculate();
+
+
+// === THEME TOGGLE LOGIC ===
+const themeToggleBtn = document.getElementById('themeToggle');
+const themeIcon = themeToggleBtn.querySelector('i');
+const htmlElement = document.getElementById('htmlPage');
+
+// 1. Check LocalStorage on load
+const savedTheme = localStorage.getItem('theme');
+if (savedTheme) {
+    applyTheme(savedTheme);
+}
+
+// 2. Event Listener
+themeToggleBtn.addEventListener('click', () => {
+    const currentTheme = htmlElement.getAttribute('data-bs-theme');
+    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+    
+    applyTheme(newTheme);
+    localStorage.setItem('theme', newTheme);
+});
+
+// 3. Apply Theme Function
+function applyTheme(theme) {
+    htmlElement.setAttribute('data-bs-theme', theme);
+    
+    if (theme === 'dark') {
+        themeIcon.classList.remove('fa-moon');
+        themeIcon.classList.add('fa-sun');
+        themeToggleBtn.classList.remove('btn-outline-light');
+        themeToggleBtn.classList.add('btn-light');
+    } else {
+        themeIcon.classList.remove('fa-sun');
+        themeIcon.classList.add('fa-moon');
+        themeToggleBtn.classList.remove('btn-light');
+        themeToggleBtn.classList.add('btn-outline-light');
+    }
+}
