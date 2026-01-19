@@ -1,0 +1,173 @@
+body {
+    background-color: #f4f7f6;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.calculator-card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.card-header {
+    background: linear-gradient(135deg, #0d6efd, #0a58ca);
+    color: white;
+    padding: 20px;
+    border-bottom: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.result-box {
+    background-color: #e7f1ff;
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 20px;
+    border: 1px solid #b6d4fe;
+}
+
+.cost-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+}
+
+.cost-item.total {
+    font-weight: bold;
+    font-size: 1.3rem;
+    color: #0d6efd;
+    border-top: 2px dashed #ccc;
+    padding-top: 15px;
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    text-align: right;
+}
+
+.local-currency-total {
+    color: #198754;
+    font-size: 1.1rem;
+    margin-top: 5px;
+}
+
+.currency-section {
+    background-color: #fff3cd;
+    border: 1px solid #ffecb5;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+/* --- SMOOTH SLIDER CSS --- */
+.range-wrap {
+    position: relative;
+    margin: 0 auto 3rem;
+}
+
+input[type=range] {
+    -webkit-appearance: none;
+    width: 100%;
+    background: transparent;
+}
+
+input[type=range]:focus {
+    outline: none;
+}
+
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 28px;
+    width: 28px;
+    border-radius: 50%;
+    background: #0d6efd;
+    cursor: pointer;
+    margin-top: -10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    border: 2px solid white;
+    transition: transform 0.1s;
+}
+
+input[type=range]::-webkit-slider-thumb:hover {
+    transform: scale(1.1);
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 8px;
+    cursor: pointer;
+    background: #dee2e6;
+    border-radius: 5px;
+}
+
+.range-ticks {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
+    margin-top: 5px;
+    font-size: 0.8rem;
+    color: #6c757d;
+    font-weight: 600;
+}
+
+/* PRINT STYLES */
+@media print {
+    body {
+        background-color: white;
+    }
+
+    .no-print,
+    .accordion,
+    .currency-section,
+    .range-wrap,
+    .btn,
+    .input-group-text,
+    input,
+    select {
+        display: none !important;
+    }
+
+    /* We reveal specific values for print instead of inputs */
+    .print-only {
+        display: block !important;
+    }
+
+    .container {
+        max-width: 100%;
+        width: 100%;
+        padding: 0;
+    }
+
+    .calculator-card {
+        box-shadow: none;
+        border: 1px solid #ddd;
+    }
+
+    .card-header {
+        background: #eee !important;
+        color: #333 !important;
+        border: 1px solid #ccc;
+    }
+
+    .result-box {
+        background-color: white !important;
+        border: 1px solid #333;
+        break-inside: avoid;
+    }
+
+    /* Show summary of settings for print context */
+    .print-summary {
+        display: block !important;
+        margin-bottom: 20px;
+        padding: 15px;
+        border: 1px solid #ddd;
+    }
+}
+
+.print-summary,
+.print-only {
+    display: none;
+}
